@@ -31,10 +31,13 @@ void MainComponent::update()
 //==============================================================================
 void MainComponent::paint (Graphics& g)
 {
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
     g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
 
-    // You can add your drawing code here!
+    g.setColour (getLookAndFeel().findColour (Slider::thumbColourId));
+    int radius = 150;
+    Point<float> p ((getWidth()  / 2.0f) + (1.0f * radius) * std::sin (getFrameCounter() * 0.04f),
+                    (getHeight() / 2.0f) + (1.0f * radius) * std::cos (getFrameCounter() * 0.04f));
+    g.fillEllipse(p.x, p.y, 30.0f, 30.0f);
 }
 
 void MainComponent::resized()
